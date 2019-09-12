@@ -1,0 +1,26 @@
+//Time Complexity: O(n)
+//Space Complexity: O(n)
+
+//Idea: Stack is used to find next greater element
+//Also, since the array has to be considered circular, we iterate upto 2*length of array
+
+class Solution {
+    public int[] nextGreaterElements(int[] nums) {
+        
+        Stack<Integer> stack = new Stack<>();
+        int[] result = new int[nums.length];
+        Arrays.fill(result,-1);
+        for(int i = 0; i < nums.length*2; i++) {
+            int temp = nums[i%nums.length];
+            while(!stack.isEmpty() && temp > nums[stack.peek()]) 
+            {
+                int idx = stack.pop();
+                result[idx] = temp;
+                    
+           }
+            if(i<nums.length)
+                stack.push(i); //push the index of each element
+    }
+    return result;
+    }
+}
