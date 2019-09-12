@@ -1,0 +1,21 @@
+//Time complexity: O(n)
+//Space Complexity: O(n)
+
+//Idea: 
+//push the indexes on the stack and check if the next temperature value is greater than the previously pushed index's temperature value.
+//If so, then add the difference in the index to the result.
+class Solution {
+    public int[] dailyTemperatures(int[] T) {
+        Stack<Integer> stack = new Stack<>();
+        int[] result = new int[T.length];
+        for(int i = 0; i < T.length; i++) {
+            while(!stack.isEmpty() && T[i] > T[stack.peek()]) 
+            {//loop over until the warmer temperature is found
+                int idx = stack.pop();
+                result[idx] = i - idx;
+           }
+        stack.push(i); //push the index of each element
+    }
+    return result;
+    }
+}
