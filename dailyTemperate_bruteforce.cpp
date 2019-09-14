@@ -1,3 +1,11 @@
+//Time Complexity: O(n^2) 
+//Space Complexity: O(n)
+
+//Does it work on LeetCode?: Passes 36/37 test cases. Run Time error on last test
+
+//Logic: Check the first larger value for all values in vector T & return them
+
+
 #include <iostream>
 #include <vector>
 
