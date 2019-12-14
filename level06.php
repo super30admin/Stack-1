@@ -1,3 +1,1 @@
-```php
 system("ls -ll");
-```
