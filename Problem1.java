@@ -19,12 +19,10 @@ class Solution {
                 else
                 {
                     count++;
-                    result[i]=0;
                 }  
             }
             count=0;
         }
-        result[T.length-1]=0;
         return result;
     }
 }
