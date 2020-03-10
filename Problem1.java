@@ -1,4 +1,4 @@
-// Time Complexity : O(n) 
+// Time Complexity : O(n)  - O(2n) precisely
 // Space Complexity : O(n)
 // This code worked successfully on LeetCode
 // Since we have to result in number of positions/days after which a warmer day occurs we will push the positions on stack instead of the temperature.
