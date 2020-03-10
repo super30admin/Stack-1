@@ -1,4 +1,4 @@
-// Time Complexity - O(n) where n is the number of elements in the array .precisely it is O(2n) since we are traversing through the array twice
+// Time Complexity - O(n) where n is the number of elements in the array .precisely it is O(3n) since we are traversing through the array twice
 // Space Complexity - O(n) ; the space used by the stack worst case will have all elements in the stack
 
 // This Solution worked on LeetCode
