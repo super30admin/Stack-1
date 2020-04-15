@@ -27,7 +27,7 @@ class Solution {
 /*
 ============================ Using stack =================================
 Time: O(N)
-Space:O(N)
+Space:O(N) in worst case where temperatures are in descending order
 Approach:
 ========
 1. As we know warmer temperatures have to be checked in later indices, pop from stack till not empty or larger element is found
