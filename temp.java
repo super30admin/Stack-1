@@ -1,5 +1,5 @@
 // Time Complexity :O(N)
-// Space Complexity :O(N)
+// Space Complexity :O(1)
 // Did this code successfully run on Leetcode : Yes
 // Any problem you faced while coding this : Figuring out way of doing it by stack was difficult. I had to refre leetcode solution for this.
 
