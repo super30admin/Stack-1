@@ -8,20 +8,22 @@
 
 class Solution {
     public int[] nextGreaterElements(int[] nums) {
+        int [] res = new int[nums.length];
+        Arrays.fill(res,-1);
         Stack<Integer> st = new Stack<>();
-        int[] out = new int[nums.length];
-        
-        int count = 2;
-        while(count>0)
+        for(int i = 0 ; i < (nums.length*2);i++)
         {
-            for(int i = nums.length-1; i >=0;i--)
+            int index = i%nums.length;
+            while(!st.isEmpty() && nums[st.peek()]<nums[index])
             {
-                while(!st.isEmpty() && st.peek()<=nums[i]) st.pop();
-                out[i] = st.isEmpty()? -1 : st.peek();
-                st.push(nums[i]);
+                int popped = st.pop();
+                res[popped] = nums[index];
             }
-            count--;
+            if(res[index]==-1)
+            {
+                st.push(index);
+            }
         }
-        return out;
+        return res;
     }
 }

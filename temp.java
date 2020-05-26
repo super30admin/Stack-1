@@ -8,16 +8,19 @@
 
 class Solution {
     public int[] dailyTemperatures(int[] T) {
-        int[] out = new int[T.length];
-        Stack<Integer> st = new Stack<>();
-        for(int i = T.length-1;i>=0;i--)
-        {
-            while(!st.isEmpty() && T[i]>=T[st.peek()]) st.pop();
-            out[i] = st.isEmpty()?0:st.peek()-i;
-            st.push(i);
+        Stack<Integer> stack = new Stack<>();
+        for (int i=0;i<T.length;i++){
+            while (!stack.isEmpty()&& T[stack.peek()]<T[i]){
+               int popped = stack.pop();
+                T[popped]= i -popped;
+            }
+            stack.push(i);
         }
-        return out;
+        while(!stack.isEmpty())
+        {
+            int popped = stack.pop();
+            T[popped] = 0;
+        }
+        return T;
     }
-}public class temp {
-    
 }
