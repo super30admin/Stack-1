@@ -14,7 +14,7 @@ class Solution:
                 #resolvable
                 idx=stack1.pop()
                 result[idx]=nums[i%n]
-            stack1.append(i)
+            stack1.append(i%n)
             
             if i<n:
                 stack1.append(i)
