@@ -1,0 +1,27 @@
+Approach 1 :Brute force Approach
+Time Complexity : O(n*2)
+Space Complexity :O(1)
+Approach2 : Usig Stack and keep the unreslved items on the top of stack and iterate through the array
+Time Complexity :O(n+2n)=O(3n)=O(n)
+Space Complexity : O(1)
+class Solution {
+    public int[] nextGreaterElements(int[] nums) {// Function return type is int array
+        // Edge Case
+        if(nums==null || nums.length==0) return new int[0];
+        int n=nums.length;
+        int[] result=new int[n];
+        Arrays.fill(result,-1); // Fillling the result Arrays with -1
+        Stack<Integer> stk=new Stack<>();
+        for(int i=0;i<2*n;i++){// Iterate through the array and also circle it.
+            while(!stk.isEmpty() && nums[i%n]>nums[stk.peek()]){
+               int idx= stk.pop();
+                result[idx]=nums[i%n];
+                
+            }
+            if(i<n){
+                stk.push(i);// As we iterate through array we push the index of nums
+            }
+        }
+        return result;
+    }
+}

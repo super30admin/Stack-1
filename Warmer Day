@@ -1,0 +1,24 @@
+Brute Force Approach :
+Time Complexity :O(n^2)
+Space Complexity :O(1)
+Approach 2 :
+Time Complexity :O(2n)=O(n)
+Space Complexity :O(n) -- for Stack
+class Solution {
+    public int[] dailyTemperatures(int[] T) {
+        // Edge Case
+        // logic
+        int n=T.length;
+        int[] result=new int[n];
+        Stack<Integer> stk=new Stack<>();
+        for(int i=0;i<n;i++){
+            while(!stk.isEmpty() && T[i]>T[stk.peek()]){
+                int idx=stk.pop();// Resolved
+                result[idx]=i-idx;// Need to put the count of days when will be the next warmer day              
+            }
+            stk.push(i);
+        }
+        return result;
+        
+    }
+}
