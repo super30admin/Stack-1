@@ -7,7 +7,8 @@
 #
 # Your code here along with comments explaining your approach
 # 1. Use stack to put those indices of lower temperature
-# 2. If we find a greater temperature than the top of stack, pop if off and write the higher temperature in it's corresponding result. 
+# 2. If we find a greater temperature than the top of stack, pop if off and write the difference in the indices (curr - stack's top element) -> number of days in it's 
+#    corresponding result. 
 # 3. Keep resolving this till this new temperature is greater than the top of stack. Then move forward
 # 4. At end of array, there will be some unresolved indices in stack. Place 0 in their corressponding result.
 
