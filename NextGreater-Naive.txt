@@ -1,0 +1,22 @@
+# TC - O(n^2)
+# SC - O(1)
+# Ran on LC - Yes, too slow!
+
+# Naive Approach - For every element, go through all the elements after it to find an element which is greater, otherwise -1
+
+class Solution:
+    def nextGreaterElements(self, nums: List[int]) -> List[int]:
+        result = [-1 for _ in range(len(nums))]
+        for i in range(len(nums)):
+            flag = True
+            cur = nums[i]
+            j = (i + 1) % len(nums)
+            while nums[j] <= cur:
+                j = (j+1) % len(nums)
+                if j == i: 
+                    result[i] = -1
+                    flag = False
+                    break
+            if nums[j] > cur and flag:
+                result[i] = nums[j]
+        return result
