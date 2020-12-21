@@ -1,0 +1,16 @@
+# TC - O(n)
+# SC - O(n)
+# Ran on LC - Yes
+
+# Double the input array (size). Check if value is greater than stack peek, if it is, pop and write in result array in a loop. Push onto stack.
+
+class Solution:
+    def nextGreaterElements(self, nums: List[int]) -> List[int]:
+        stack = []
+        result = [-1 for _ in range(len(nums))]
+        for i in range(2*len(nums)):
+            while stack and nums[i%len(nums)] > nums[stack[-1]]:
+                idx = stack.pop()
+                result[idx] = nums[i%len(nums)]
+            stack.append(i%len(nums))
+        return result
