@@ -1,0 +1,16 @@
+# TC - O(n)
+# SC - O(n)
+# Ran on LC - Yes
+
+# Use a stack to store unresolved entries (indices). Pop when condition met and fill in the result array.
+
+class Solution:
+    def dailyTemperatures(self, T: List[int]) -> List[int]:
+        stack = []
+        result = [0 for _ in range(len(T))]
+        for i in range(len(T)):
+            while stack and T[i] > T[stack[-1]]:
+                idx = stack.pop()
+                result[idx] = i - idx
+            stack.append(i)
+        return result
