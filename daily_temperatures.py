@@ -1,10 +1,13 @@
-
 class Solution(object):
     def dailyTemperatures(self, T):
         """
         :type T: List[int]
         :rtype: List[int]
         """
+        """"
+        #solve that Amazon question 
+where we have been given an array of heights of buildings and we have to give the number of buildings 
+that we can see below our line of sight if we are standing on top of each building.""""
         #O(n)
         #O(n)
         ans=[0]*len(T)
@@ -18,4 +21,5 @@ class Solution(object):
                 topindex = stack.pop()
                 ans[topindex] = num-topindex
             stack.append(num)
+            print(stack)
         return ans
