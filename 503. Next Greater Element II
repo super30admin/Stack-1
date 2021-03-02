@@ -1,0 +1,24 @@
+class Solution:
+    def nextGreaterElements(self, nums: List[int]) -> List[int]:
+        stack = []
+        n = len(nums)
+        # initialize the result array with -1's
+        result = [-1 for i in range(n)]
+        
+        # iterate through the array two times
+        for i in range(2*n):
+            # iterate until the current element is greater than  top of stack
+            # and pop the element from the stack if condition satisfies
+            while(stack and nums[i%n] > nums[stack[-1]]):
+                idx = stack.pop();
+                result[idx] = nums[i%n];
+            # insert element into the stack only if it is not processed
+            if(i < n):
+                stack.append(i)
+        return result;
+    '''
+    time complexity = O(n)
+    space complexity = O(1)
+    '''
+            
+        

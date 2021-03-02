@@ -1,0 +1,30 @@
+class Solution:
+    def dailyTemperatures(self, T: List[int]) -> List[int]:
+        n = len(T)
+        
+        # initialize stack to find the next greater element of each element in T
+        stack = [n-1]
+        result = [0]
+        
+        # iterate from the end of the array
+        for i in range(n-2, -1, -1):
+            # pop the elements from the stack until the current
+            # element is greater than top of stack
+            while(stack and T[i] >= T[stack[-1]]):
+                stack.pop()
+            # if stack is empty , add 0 to the result
+            if(not stack):
+                stack.append(i);
+                result.append(0);
+            # else  add (stack top - current) to the result
+            else:
+                result.append(stack[-1] - i);
+                stack.append(i);
+        return result[::-1];
+    '''
+    time complexity = O(n)
+    space complexity = O(n)
+    '''
+                
+        
+        
