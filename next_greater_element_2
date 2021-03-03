@@ -1,0 +1,21 @@
+# Time Complexity : O(n)
+# Space Complexity : O(n)
+# Did this code successfully run on Leetcode : Yes
+# Three line explanation of solution in plain english
+# I traverse through the array twice and put each element index in a stack once. If current element is greater than the top element in the stack then this is the result 
+# for the element at the stack top index. I do this for all the elements. The result for rest of the elements is -1
+
+class Solution:
+    def nextGreaterElements(self, nums: List[int]) -> List[int]:
+        length = len(nums)
+        stack = []
+        result = [-1 for x in range(length)]
+        for i in range(2*length): # 0 1 2 3 4 5
+            while len(stack) > 0 and nums[i%length] > nums[stack[-1]]:
+                idx = stack.pop()
+                result[idx] = nums[i%length]
+                
+            if i < length:
+                stack.append(i)
+                
+        return result
