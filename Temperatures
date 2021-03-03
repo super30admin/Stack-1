@@ -1,0 +1,25 @@
+/*
+TC: O(n)
+SC: O(n)
+ */
+class Temperatures{
+
+    public int[] dailyTemperatures(int[] T) {
+
+        Stack<Integer> st = new Stack<>();
+        int currIndex = 0;
+        int res[] = new int[T.length];
+
+        while(currIndex < T.length){
+
+            while(!st.isEmpty() && T[currIndex] > T[st.peek()]){
+                int idx = st.pop();
+                res[idx] = currIndex - idx;
+            }
+            st.push(currIndex);
+            currIndex++;
+        }
+
+        return res;
+    }
+}
