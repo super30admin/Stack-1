@@ -1,0 +1,24 @@
+class Solution {
+    
+    //739. Daily Temperatures
+    //Time complexity : O(n)
+    //Space complexity : O(n)
+    public int[] dailyTemperatures(int[] T) {
+        
+        int len = T.length;
+        int[] res = new int[len];
+        
+        if(T == null || len ==0)
+            return res;
+        Stack<Integer> st = new Stack<>();
+        
+        for(int i=0;i <len;i++){
+            while(!st.isEmpty() && T[i] > T[st.peek()]){
+                res[st.peek()] = i-st.pop();
+               
+            }
+             st.push(i);
+        }
+        return res;
+    }
+}

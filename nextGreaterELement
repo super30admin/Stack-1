@@ -1,0 +1,26 @@
+class Solution {
+    
+    //503. Next Greater Element II
+    //Time complexity : O(n)
+    //Space complexity : O(n)
+    public int[] nextGreaterElements(int[] nums) {
+        
+        int len = nums.length;
+        int[] res = new int[len];
+        Arrays.fill(res,-1);
+        
+        if(nums == null || len ==0)
+            return res;
+        
+        Stack<Integer> st = new Stack<>();
+        for(int i=0;i < 2*len;i++){
+            while(!st.isEmpty() && nums[i%len] > nums[st.peek()]){
+                res[st.pop()] = nums[i%len];
+                
+            }
+            if(i <len)
+            st.push(i);
+        }
+        return res;
+    }
+}
