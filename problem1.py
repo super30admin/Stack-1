@@ -1,5 +1,5 @@
 #Time Complexity=O(n)
-#Space Complexity=O(1)
+#Space Complexity=O(n)
 class Solution:
     def dailyTemperatures(self, T: List[int]) -> List[int]:
         if not T or len(T)==0:
