@@ -2,6 +2,25 @@ import java.util.*;
 
 public class DailyTemperaturs {
 
+    //O(N^2) - Iterating all the element with each item.
+    //O(1) - Not using any extra spac
+    public int[] dailyTemperaturesBF(int[] temperatures) {
+        int n = temperatures.length;
+        int[] result = new int[n];
+        for(int i=0;i<n;i++) {
+            int currentNumber = temperatures[i];
+            for(int j=i+1;j<n;j++) {
+                if(temperatures[j] > currentNumber) {
+                    result[i] = j - i;
+                    break;
+                }
+            }
+        }
+        return result;
+    }
+
+    //O(N) - Iterating all the element only one time
+    //O(N) - Using stack
     public int[] dailyTemperatures(int[] temperatures) {
         int n = temperatures.length;
         int[] result = new int[n];
