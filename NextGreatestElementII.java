@@ -1,20 +1,29 @@
 class Solution {
     public int[] nextGreaterElements(int[] nums) {
 
-        //Was not sure how to implement this, will come back to update
-        Stack<Integer> nums = new Stack<>();
+        //O(n) space and O(3n) exact time
+        int[] result = new int[nums.length];
 
-        for (int i=0; i<nums.length; i++) {
+        if (nums == null) return result;
 
-            nums.add(nums[i]);
+        Arrays.fill(result, -1);
+
+        Stack<Integer> stack = new Stack<>();
+        int n = nums.length;
+
+        for (int i=0; i< 2 *n; i++) {
+
+            while (!stack.isEmpty() && nums[i % n] > nums[stack.peek()]) {
+                int top = stack.pop();
+                result[top] = nums[i%n];
+            }
+            if (i < n) {
+                stack.push(i);
+            }
 
         }
 
-        while (!nums.isEmpty()) {
-
-            nums.pop();
-
-        }
+        return result;
 
     }
 }
