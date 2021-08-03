@@ -12,7 +12,7 @@ S30 SlackID : RN32MAY2021
 #-----------------
 # Time Complexity: 
 #-----------------
-# O(N): Need to iterate over the entire once in the worst case 
+# O(N): Need to iterate over the entire input array thrice in the worst case - 3N 
 #------------------
 # Space Complexity: 
 #------------------
