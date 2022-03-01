@@ -1,0 +1,24 @@
+class Solution {
+    public int[] dailyTemperatures(int[] temperatures) {
+        
+        if(temperatures == null || temperatures.length == 0)
+            return null;
+        
+        int n = temperatures.length;
+        int[] nextWarmer = new int[n];
+        
+       
+        
+        for(int i=n-2;i>=0;i--){
+           
+            int index =i+1;
+            while(index<n && nextWarmer[index] !=0 && temperatures[index] <= temperatures[i]  ){
+                index +=nextWarmer[index];
+            }
+            if(temperatures[index] > temperatures[i])
+                nextWarmer[i] = index-i;
+            //System.out.println(i +"  "+nextWarmer[i]);
+        }
+        return nextWarmer;
+    }
+}
