@@ -1,5 +1,5 @@
-//Time complexity : O(n)
-//Space Complexity :   O(1)
+//Time complexity : O(2n) in worst case
+//Space Complexity : O(n) in worst case
 //Did it run on leetcode : yes
 
 import java.util.Stack;
