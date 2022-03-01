@@ -1,0 +1,54 @@
+// Time Complexity :O(2n) //n is the length of the array 
+// Space Complexity :O(n) // n is the length of the array
+// Did this code successfully run on Leetcode :yes
+// Any problem you faced while coding this :no
+
+
+// Your code here along with comments explaining your approach
+//used montolically increased stack to compare previous value with present
+//purpose of using stack as it's follows LIFO if prsent value is not greater than preious value we will process current into stack untill we resolve the current the prvious is going to be in the stack
+class Solution {
+    public int[] dailyTemperatures(int[] temperatures) {
+        int [] result = new int[temperatures.length];
+        if(temperatures == null || temperatures.length == 0) return result;
+        Stack<Integer> st = new Stack<>();
+        for(int i =0;i<temperatures.length;i++){
+            while(!st.isEmpty()&& temperatures[st.peek()] < temperatures[i]){
+                int pop = st.pop();
+                result[pop] = i - pop;
+            }
+            st.push(i);
+        }
+        return result;
+    }
+}
+
+// Time Complexity :O(4n) //n is the length of the array 
+// Space Complexity :O(n) // n is the length of the array
+// Did this code successfully run on Leetcode :yes
+// Any problem you faced while coding this :no
+
+
+// Your code here along with comments explaining your approach
+//used montolically increased stack to compare previous value with present
+class Solution {
+    public int[] nextGreaterElements(int[] nums) {
+        if(nums == null || nums.length ==0) return nums;
+        int n = nums.length;
+        int [] result = new int[n];
+        Arrays.fill(result,-1);
+        Stack<Integer> st = new Stack<>();
+        for(int i =0;i< 2 *n;i++){
+            while(!st.isEmpty() && nums[st.peek()] < nums[i%n]){
+                result[st.peek()] = nums[i%n];
+                st.pop();
+            }
+            //st.push(i%n);
+            if(i < n)
+                st.push(i);
+            }
+ 
+        }
+        return result;
+    }
+}
