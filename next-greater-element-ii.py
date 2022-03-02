@@ -1,6 +1,6 @@
 '''
 TC: O(n)
-SC: O(m)
+SC: O(n)
 '''
 
 class Solution:
