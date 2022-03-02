@@ -1,0 +1,24 @@
+//tc: O(2n)
+//sc: O(n)
+//passed on leetcode: yes
+
+class Solution {
+    public int[] nextGreaterElements(int[] nums) {
+        int n = nums.length;
+        if (nums == null || n == 0) return new int[0];
+        int [] result = new int [n];
+        Stack<Integer> st = new Stack<>();
+        Arrays.fill(result,-1);
+        for (int i=0; i< 2*n; i++) { //2*n because we want it to go around for circular []
+            while(!st.isEmpty() && (nums[i%n] > nums[st.peek()])) { 
+            //i%n because if i> n it will be oob eg: n = 5 i = 7 i%n -- > 2 [1,2,3,4] 6%4 = 2
+                int popped = st.pop();
+                result[popped] = nums[i%n];
+            }
+            if (i<n) {
+               st.push(i);
+            }
+         }
+        return result;
+    }
+}
