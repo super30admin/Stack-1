@@ -1,0 +1,19 @@
+//tc: O(2n) because smaller elements will have to accessed again when a greater temperature is found eg: 70,65,60,55,75
+//sc: O(n) because of stack -- another method can be traversing from the back of [] so we already know the warmer temp and using the result [] to check if there are other ele greater than i+1
+//eg: result = [.....i, 4, 3,2,1,0] ip = [....50,48,45,44,43,55]
+class Solution {
+    public int[] dailyTemperatures(int[] temperatures) {
+        int n = temperatures.length;
+        if (temperatures == null || n == 0) return new int[0];
+        int [] result = new int [n];
+        Stack<Integer> st = new Stack<>();
+        for (int i=0; i< n; i++) {
+            while(!st.isEmpty() && (temperatures[i] > temperatures[st.peek()])) {
+                int popped = st.pop();
+                result[popped] = i-popped;
+            }
+            st.push(i);
+         }
+        return result;
+    }
+}
