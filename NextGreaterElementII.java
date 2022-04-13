@@ -1,6 +1,6 @@
 // Time Complexity : O(n) n - nums; max 2n traversal if the greatest elem is at the last.
 // Space Complexity : O(n) n - nums; stack size will be n; if all in decreasing no greater elem is present
-// Did this code successfully run on Leetcode : Yes;()
+// Did this code successfully run on Leetcode : Yes;(https://leetcode.com/submissions/detail/679845861/)
 // Any problem you faced while coding this : No;
 // My Notes : IF elem greater than found; then update the previous one and push the curr one till the top is greater or all decreasing elems
 // Remaining elems; iterate and search again.
