@@ -1,0 +1,23 @@
+class Solution {
+    public int[] dailyTemperatures(int[] temperatures) 
+    {
+       // int T = temperatures.length;
+        int [] result = new int[temperatures.length];
+        
+        Stack<Integer> st = new Stack<>();
+        for (int i=0; i<temperatures.length;i++)
+        {
+            while(!st.isEmpty() && temperatures[i] > temperatures[st.peek()])
+            {
+                int curr = st.pop();
+                result[curr] = i-curr;
+            }
+            st.push(i);
+        }
+        
+        return result;
+    }
+}
+
+//Time :O(2N)
+//Space: O(N)

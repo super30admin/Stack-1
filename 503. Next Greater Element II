@@ -1,0 +1,29 @@
+class Solution {
+    public int[] nextGreaterElements(int[] nums) 
+    {
+        int n = nums.length;
+        Stack<Integer> st = new Stack<>(); // to push unresolved elements
+        
+        int [] result = new int[n];
+        
+        Arrays.fill(result, -1); //Initially make all elements as -1
+        
+        for (int i=0 ; i<2*n ; i++) // It could be circular
+        {
+            while(!st.isEmpty() && nums[i%n] > nums[st.peek()])
+            {
+                int index = st.pop();
+                result[index] = nums[i%n];
+            }
+            
+             if(i < n)
+        {
+            st.push(i);
+        }
+    }
+            
+       
+        
+        return result;
+    }
+}
