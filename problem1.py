@@ -1,3 +1,6 @@
+# Time-Complexity: O(n)
+# Space Complexity: O(n)
+# Leetcode status: Accepted
 class Solution(object):
     def dailyTemperatures(self, temperatures):
         """
