@@ -51,3 +51,35 @@ class Solution {
         return answer;
     }
 }
+
+//*****131.503.NEXT GREATER ELEMENT-2*****
+
+class Solution {
+    public int[] nextGreaterElements(int[] nums) {
+        int n=nums.length;
+        Stack<Integer> st=new Stack<Integer>();
+        int [] answer=new int[n];
+        
+        //Null case
+        if(nums.length==0 || nums==null) return new int[0];
+        Arrays.fill(answer, -1);
+        
+        //Iterating through array
+        for(int i=0;i<2*n;i++)
+        {
+            while(!st.isEmpty() && nums[st.peek()]< nums[i%n])
+            {
+                int idx=st.pop();
+                answer[idx]=nums[i%n];
+            }
+            
+            
+            if(i<n)
+            {
+                st.push(i);
+            }
+        }
+        return answer;
+        
+    }
+}
