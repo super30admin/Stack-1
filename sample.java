@@ -25,7 +25,7 @@ class Solution {
     }
 }
 //****130.739. Daily Tempratures- OPTIMAL WAY****
-// Time Complexity :O(N);
+// Time Complexity :O(2N);
 // Space Complexity :o(N);
 // Did this code successfully run on Leetcode :Y
 // Any problem you faced while coding this :N;
@@ -53,7 +53,10 @@ class Solution {
 }
 
 //*****131.503.NEXT GREATER ELEMENT-2*****
-
+// Time Complexity :O(4N);
+// Space Complexity :o(1);
+// Did this code successfully run on Leetcode :Y
+// Any problem you faced while coding this :N;
 class Solution {
     public int[] nextGreaterElements(int[] nums) {
         int n=nums.length;
