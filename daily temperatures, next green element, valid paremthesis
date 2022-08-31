@@ -1,0 +1,45 @@
+class Solution:
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        #timecomplexity:O(n);
+        #spaceComplexity:O(1)
+        result = [0] * len(temperatures) 
+        stack = []  
+        for index, temp in enumerate(temperatures): 
+            while stack and temperatures[stack[-1]] < temp:
+                prev_temp = stack.pop() 
+                result[prev_temp] = index - prev_temp 
+            stack.append(index);  
+        return result  
+    
+
+class Solution:
+    def nextGreaterElements(self, nums: List[int]) -> List[int]:
+        #timecomplexity:O(n);
+        #spaceComplexity:O(1)
+        r = [-1]*2*len(nums)
+        nums.extend(nums)
+        s = []
+        for i in range(len(nums)):
+            while s and nums[s[-1]] < nums[i]:
+                r[s.pop()] = nums[i]
+            s.append(i)
+        n = len(r)
+        return r[:n//2]
+
+class Solution:
+    def isValid(self, s: str) -> bool:
+        #timecomplexity:O(n);
+        #spaceComplexity:O(1)
+        stack = []
+        opening_br = '([{'
+        closing_br = ')]}'
+        for brts in s:
+            if brts in '([{':
+                stack.append(brts)
+            else:
+                if stack:
+                    if closing_br.index(brts) != opening_br.index(stack.pop()):
+                        return False
+                else:
+                    return False
+        return len(stack) == 0
