@@ -40,7 +40,7 @@ class Solution {
         int[] result = new int[n];
         Stack<Integer> stack = new Stack<>(); // O(n)  
         
-        for (int i = 0; i < n; i++) { // O(n)
+        for (int i = 0; i < n; i++) { // O(2*n)
             while (!stack.isEmpty() && temperatures[i] > temperatures[stack.peek()]) {
                 int popped = stack.pop();
                 result[popped] = i - popped;
