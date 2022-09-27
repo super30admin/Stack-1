@@ -1,0 +1,18 @@
+#TC: O(n)
+# SC: O(n)
+class Solution:
+    def nextGreaterElements(self, nums: List[int]) -> List[int]:
+        ans = [-1 for _ in range(len(nums))]
+        if not nums:
+            return []
+        
+        stack = []
+        
+        for i in range(2*len(nums)):
+            while stack and nums[i % len(nums)] > nums[stack[-1]]:
+                popped = stack.pop()
+                ans[popped] = nums[i% len(nums)]
+                
+            if i < len(nums):
+                stack.append(i)
+        return ans
