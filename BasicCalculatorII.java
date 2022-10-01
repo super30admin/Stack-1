@@ -1,6 +1,6 @@
 //Approach - 1: Stack, lastSign, curr
 //Time Complexity : O(n)
-//Space Complexity : O(1)
+//Space Complexity : O(n)
 
 class Solution {
     public int calculate(String s) {       
