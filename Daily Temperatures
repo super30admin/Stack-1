@@ -1,0 +1,14 @@
+class Solution:
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        stk = []
+        res = [0] * len(temperatures)
+        for idx, temp in enumerate(temperatures):
+            while stk and stk[-1][1] < temp:
+                a, _ = stk.pop()
+                res[a] = idx - a
+            stk.append((idx, temp))
+        return res
+    
+# Time Complexity: O(n)
+# Space Complexity: O(n)
+# Successfully implemented on Leetcode

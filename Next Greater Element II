@@ -1,0 +1,17 @@
+class Solution:
+    def nextGreaterElements(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        arr = nums + nums
+        stk = []
+        res = [-1 for _ in range(n)]
+        for i, val in enumerate(arr):
+            
+            while stk and arr[stk[-1]] < val :
+                c = stk.pop()
+                res[c%n] = val
+            stk.append(i)
+        return res
+    
+# Time Complexity: O(n)
+# Space Complexity: O(n)
+# Successfully implemented on Leetcode
