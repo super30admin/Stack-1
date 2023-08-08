@@ -1,0 +1,16 @@
+// Time Complexity o(n) Space complexity o(n)
+class Solution {
+    public int[] dailyTemperatures(int[] t) {
+        int[] result = new int[t.length];
+        Stack<Integer> st = new Stack<>();
+        for(int i=0;i<t.length;i++){
+            while(!st.isEmpty() && t[st.peek()]<t[i]){
+                int popped = st.pop();
+                result[popped] = i-popped;
+
+            }
+            st.push(i);
+        }
+        return result;
+    }
+}

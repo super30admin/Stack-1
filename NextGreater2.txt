@@ -1,0 +1,19 @@
+// Time Complexity o(n) Space complexity o(n)
+class Solution {
+    public int[] nextGreaterElements(int[] nums) {
+        int[] result = new int[nums.length];
+        Arrays.fill(result,-1);
+        int n=nums.length;
+        Stack<Integer> s = new Stack<Integer>();
+        for(int i=0;i<2*nums.length;i++){
+            while(!s.isEmpty() && nums[i%n] > nums[s.peek()]){
+                int pooped = s.pop();
+                result[pooped]=nums[i%n];
+            }
+            if(i<n){
+                s.push(i);
+            }
+        }
+        return result;
+    }
+}
