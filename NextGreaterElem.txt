@@ -1,0 +1,22 @@
+/**
+Time Complexity - O(n)
+Space Complexity - O(n)
+ */
+class Solution {
+    public int[] nextGreaterElements(int[] nums) {
+        int[] ans = new int[nums.length];
+        Arrays.fill(ans, -1);
+        Stack<Integer> stack = new Stack<>();
+        for (int i=0; i<2*nums.length; i++) {
+           
+            int k = i % nums.length;
+           
+            while (!stack.isEmpty() && nums[stack.peek()] < nums[k]) {
+                int index = stack.pop() % nums.length;
+                ans[index] = nums[k];
+            }
+            stack.push(k);
+        }
+        return ans;
+    }
+}
