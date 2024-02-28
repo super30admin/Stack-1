@@ -15,9 +15,9 @@ class Solution(object):
             #while loop to compare current and previous temperatue.
             while stack and temperatures[stack[-1]] < temperatures[r]:
 
-                l = stack.pop() #pop the top element (colder temperature)
+                popped = stack.pop() #pop the top element (colder temperature)
 
-                answer[l] = r - l  #Difference of the indexes of current & previous colder temperatures
+                answer[popped] = r - popped  #Difference of the indexes of current & previous colder temperatures
 
             stack.append(r)
         
