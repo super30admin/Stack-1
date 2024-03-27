@@ -1,0 +1,20 @@
+# Next Greater Element II
+
+# The implementation has a time complexity of O(N), where N is the length of the nums array.
+# The space complexity of O(N) for the result array and the stack.
+
+class Solution:
+    def nextGreaterElements(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        result = [-1] * n  # Initialize the result array with -1
+        stack = []  # Initialize a monotonic decreasing stack to store indices
+        
+        # Perform the first traversal
+        for i in range(2 * n):
+            while stack and nums[i % n] > nums[stack[-1]]:
+                idx = stack.pop()  # Pop the index from the stack
+                result[idx] = nums[i % n]  # Update the result with the next greater element
+            if i < n:
+                stack.append(i)  # Push the index onto the stack
+        
+        return result

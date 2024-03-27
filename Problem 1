@@ -1,0 +1,19 @@
+# Daily Temperatures
+
+# the time complexity of the dailyTemperatures method is O(N). 
+# the space complexity is O(N), where N is the length of the temperatures array.
+
+
+class Solution:
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        stack = []  # Initialize a stack to store indices of temperatures
+        result = [0] * len(temperatures)  # Initialize the result array
+        
+        for i in range(len(temperatures)):
+            # While the stack is not empty and the current temperature is greater than the temperature at the index on top of the stack
+            while stack and temperatures[i] > temperatures[stack[-1]]:
+                prev_index = stack.pop()  # Pop the index from the stack
+                result[prev_index] = i - prev_index  # Update the result with the number of days until a warmer temperature
+            stack.append(i)  # Push the current index onto the stack
+        
+        return result
