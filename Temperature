@@ -1,0 +1,34 @@
+/*********
+Time O(n^2)
+Space O(n)
+Leetcode yes
+Problem No
+
+Same approach of problem 1 but now instead of storing the element we store the difference of current greater
+element and index that we get from stack
+*********/
+
+class Solution {
+    public int[] dailyTemperatures(int[] T) {
+        
+         Stack<Integer> stack = new Stack<>();
+        int[] result = new int[T.length];
+        int n = T.length;
+        
+        for(int i =0; i< n ; i++)
+        {
+            while(!stack.isEmpty() && T[stack.peek()] < T[i])
+            {
+                int index = stack.pop();
+                result[index] = i-index;
+            }
+                
+            
+            if(i<n)
+                stack.push(i);
+        }
+
+        return result;
+        
+    }
+}
