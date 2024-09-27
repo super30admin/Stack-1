@@ -1,0 +1,29 @@
+//time :O(2n) ~ O(n)
+//space :O(n)
+class Solution {
+    public int[] nextGreaterElements(int[] nums) {
+        int[] res= new int[nums.length];
+        //fill as -1 
+         for(int i=0;i<res.length;i++)
+        {
+             res[i]=-1;
+         }
+        Stack<Integer> st=new Stack<>();
+        //run loops twice of array length : 2 times
+        for(int i=0;i<nums.length*2;i++)
+        {
+            //check for next grtr element and take modulo to move it in circular manner
+            while(!st.isEmpty() && nums[i%nums.length]>nums[st.peek()])
+            {
+                int idx=st.pop();
+                res[idx]=nums[i%nums.length];
+            }
+            //in first pass only we store into stack , dont store it in second pass
+            if(i<nums.length)
+            {
+                st.push(i%nums.length);
+            }
+        }
+        return res;
+    }
+}
