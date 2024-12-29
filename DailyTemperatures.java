@@ -1,24 +1,25 @@
-// Time complexity = O(n)
-// Space complexity = O(n), where n is the temperatures.
-// monotonically decreasing stack and go forward. 
-//Last In first out because the lowest temperature needs to be compared with the stack temperature.
+// monotonically decreasing stack , why ? because temperatures get resolved when the temperature is greater than the stack peek.
+// Time complexity = O(2n) which is O(n)
+// Space complexity = O(n)
 class Solution {
     public int[] dailyTemperatures(int[] temperatures) {
-        // monotonically decreasing stack
         int[] res = new int[temperatures.length];
         Stack<Integer> stack = new Stack<>();
-        stack.push(0);// first element of the temperatures array.
-        
-        for(int i=1;i< temperatures.length;i++) {
-            // check whether the element referenced by i is > than the stack peek.
-            // if so, pop from the stack.
-            while(!stack.isEmpty() && temperatures[i]> temperatures[stack.peek()]) {// 75 >74, remove 74
-                int idx = stack.pop();
-                res[idx] = i- idx ;
+        int i=0;
+        int n =temperatures.length;
+        while(i< n ) {
+            if(stack.isEmpty() || temperatures[i]<= temperatures[stack.peek()]) {
+                stack.push(i);  // monotonically decreasing stack.
+                // 75->74-> 73
+            } else {
+                while(!stack.isEmpty() && temperatures[i]> temperatures[stack.peek()]) {
+                    int j = stack.pop();// get the integer.
+                    res[j] = i-j;
+                }
+                stack.push(i);
             }
-            stack.push(i);
+            i++;
         }
         return res;
-        
     }
 }

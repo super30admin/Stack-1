@@ -1,23 +1,44 @@
-// time complexity = O(4*n) = O(n)
-// space complexity = O(n)// the result array
+// monotonically decreasing stack.
+// the nums will only get resolved when there is a number greater than the number in the stack.
+// Time complexity= O(4*n)
+// Space complexity = O(n).
+
+import java.util.Stack;
+
 class Solution {
     public int[] nextGreaterElements(int[] nums) {
-        // Monotonically decreasing stack
-        Stack<Integer> stack = new Stack<>();
         int[] res = new int[nums.length];
-        Arrays.fill(res,-1);// fill this with -1, since the last element in the stack. the greatest element is not going to have anyone else apart from itself. As per the problem, it needs to be -1.
+        Stack<Integer> stack = new Stack<>();// monotonically decreasing stack.
+        int i=0;
         int n = nums.length;
-        // why 2 times- since we do a second pass to determine for the elments who is greater.
-        for(int i=0;i< 2*n;i++) {
-            while(!stack.isEmpty() && nums[i%n]> nums[stack.peek()]) {
-                int popped = stack.pop();
-                res[popped] = nums[i%n];// assign the value.
-            }
-            // do not put the repeated elements during the second pass.
-            if(i<n) {
+
+        while(i<n) {
+            if(stack.isEmpty() || nums[i] < nums[stack.peek()]) {
                 stack.push(i);
-            }            
+            } else {
+                while(!stack.isEmpty() && nums[i]> nums[stack.peek()]){
+                    int j = stack.pop(); // got the index.
+                    res[j] = nums[i]; // assigned the greater number.
+                }
+                stack.push(i);
+            }
+            i++;
         }
+        // prepped for second pass.
+        // there will always be an element which is gonna be in the stack.
+        // that is going to be the max element.
+        i = i%n; // comes back to 0
+        while(i< n && i!= stack.peek()) {
+            while(!stack.isEmpty() && nums[i]> nums[stack.peek()]){
+                    int j = stack.pop(); // got the index.
+                    res[j] = nums[i]; // assigned the greater number.
+            }
+            i++;
+        }
+        while(!stack.isEmpty()) {
+            res[stack.pop()] = -1;
+        }
+        
         return res;
     }
 }
