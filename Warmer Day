@@ -1,24 +1,22 @@
-Brute Force Approach :
-Time Complexity :O(n^2)
-Space Complexity :O(1)
-Approach 2 :
-Time Complexity :O(2n)=O(n)
-Space Complexity :O(n) -- for Stack
+// Approach : From Brute force we fix the current day and scan for the future day for higher temperature.
+// In order to eliminate those nested iterations we can utilize some additional data structure as a place holder and try to resolve the future element first than the current element.
+// if unresolved then store them in the data structure.
+// So last unresolved element has to be resolved first - LIFO (USE STACK)
+// Time : O(2n)
+// Space : O(n) // stack space
 class Solution {
-    public int[] dailyTemperatures(int[] T) {
-        // Edge Case
-        // logic
-        int n=T.length;
-        int[] result=new int[n];
-        Stack<Integer> stk=new Stack<>();
-        for(int i=0;i<n;i++){
-            while(!stk.isEmpty() && T[i]>T[stk.peek()]){
-                int idx=stk.pop();// Resolved
-                result[idx]=i-idx;// Need to put the count of days when will be the next warmer day              
+    public int[] dailyTemperatures(int[] temperatures) {
+        int n = temperatures.length;
+        int[] result = new int[n];
+
+        Stack<Integer> stk = new Stack <>(); // will be a monotonically increasing stock
+        for(int i =0;i<n;i++){// go over all the temperatures
+            while(!stk.isEmpty() && temperatures[i]>temperatures[stk.peek()]){
+                int popped = stk.pop();
+                result[popped]=i - popped;
             }
-            stk.push(i);
+            stk.push(i); // very first element
         }
         return result;
-        
     }
 }

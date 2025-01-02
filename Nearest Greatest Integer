@@ -1,26 +1,81 @@
-Approach 1 :Brute force Approach
-Time Complexity : O(n*2)
-Space Complexity :O(1)
-Approach2 : Usig Stack and keep the unreslved items on the top of stack and iterate through the array
-Time Complexity :O(n+2n)=O(3n)=O(n)
-Space Complexity : O(1)
+// Approach : From brute force fix the current element and scan for the greater element in the rest of the array
+// In order to eliminate the nested iterations we can use additional data structure where you could store the unresolved nextGreaterElement in it.
+// So last unresolved element has to be resolved first - LIFO (USE STACK)
+// Time : O(2n)
+// Space : O(n)
 class Solution {
-    public int[] nextGreaterElements(int[] nums) {// Function return type is int array
-        // Edge Case
-        if(nums==null || nums.length==0) return new int[0];
-        int n=nums.length;
-        int[] result=new int[n];
-        Arrays.fill(result,-1); // Fillling the result Arrays with -1
-        Stack<Integer> stk=new Stack<>();
-        for(int i=0;i<2*n;i++){// Iterate through the array and also circle it.
+    public int[] nextGreaterElements(int[] nums) {
+        int n = nums.length;
+        int[] result = new int[n];
+        Arrays.fill(result , -1); // if you don't have next greater element fill that array position with -1
+        Stack<Integer> stk = new Stack<>();
+        // In the second pass we might be pushing the element again and try to resolve it. - So we can optimize it 
+        for(int i =0;i<2*n;i++){ // first pass i-> 0 to n and in second pass i -> i%n to n
             while(!stk.isEmpty() && nums[i%n]>nums[stk.peek()]){
-               int idx= stk.pop();
-                result[idx]=nums[i%n];
-                
+                int popped = stk.pop();
+                result[popped] = nums[i%n];
             }
+            stk.push(i%n);
+        }
+        return result;
+    }
+}
+
+// Approach : From brute force fix the current element and scan for the greater element in the rest of the array
+// In order to eliminate the nested iterations we can use additional data structure where you could store the unresolved nextGreaterElement in it.
+// So last unresolved element has to be resolved first - LIFO (USE STACK)
+// Time : O(2n)
+// Space : O(n)
+class Solution {
+    public int[] nextGreaterElements(int[] nums) {
+        int n = nums.length;
+        int[] result = new int[n];
+        Arrays.fill(result , -1); // if you don't have next greater element fill that array position with -1
+        Stack<Integer> stk = new Stack<>();
+        // In the second pass we might be pushing the element again and try to resolve it. - So we can optimize it 
+        // optimization - Before pushing into stack check if your i exceeded the length. if it does then you are in second pass
+        for(int i =0;i<2*n;i++){ // first pass i-> 0 to n and in second pass i -> i%n to n
+            while(!stk.isEmpty() && nums[i%n]>nums[stk.peek()]){
+                int popped = stk.pop();
+                result[popped] = nums[i%n];
+            }
+            // only in first pass - push the elements
             if(i<n){
-                stk.push(i);// As we iterate through array we push the index of nums
+                stk.push(i%n);
             }
+            
+        }
+        return result;
+    }
+}
+
+// Approach : From brute force fix the current element and scan for the greater element in the rest of the array
+// In order to eliminate the nested iterations we can use additional data structure where you could store the unresolved nextGreaterElement in it.
+// So last unresolved element has to be resolved first - LIFO (USE STACK)
+// Time : O(2n)
+// Space : O(n)
+class Solution {
+    public int[] nextGreaterElements(int[] nums) {
+        int n = nums.length;
+        int[] result = new int[n];
+        Arrays.fill(result , -1); // if you don't have next greater element fill that array position with -1
+        Stack<Integer> stk = new Stack<>();
+        // In the second pass we might be pushing the element again and try to resolve it. - So we can optimize it 
+        // optimization - Before pushing into stack check if your i exceeded the length. if it does then you are in second pass
+        for(int i =0;i<2*n;i++){ // first pass i-> 0 to n and in second pass i -> i%n to n
+            while(!stk.isEmpty() && nums[i%n]>nums[stk.peek()]){
+                int popped = stk.pop();
+                result[popped] = nums[i%n];
+            }
+            // only in first pass - push the elements
+            if(i<n){
+                stk.push(i%n);
+            } else if (i%n == stk.peek()) break;
+            // when you are on  second pass and your i is equal to stack.peek()
+            // then we cannot find any greater element so we can stop
+           
+
+            
         }
         return result;
     }
