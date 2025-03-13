@@ -1,0 +1,4 @@
+The two questions were based on monotonic stack.
+The stack is useful for keeping track of indexes that have to be resolved and a subsequent element in the array will help to resolve it
+
+Here, in the two questions, we store the index and go ahead and check every element against the top of the stack for comparison
